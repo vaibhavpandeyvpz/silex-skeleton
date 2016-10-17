@@ -80,15 +80,6 @@ $app->get('/reset-password/{token}', 'AccountController:resetPasswordAction')
 
 $app->post('/reset-password/{token}', 'AccountController:resetPasswordAction');
 
-//$app->get('/register', function () use ($app) {
-//    $user = App\Models\User::createNew();
-//    $user->setEmail('name@example.tld');
-//    $user->setName('Your Name');
-//    $user->setPassword($app->encodePassword($user, '12345678'));
-//    $app->getEntityManager()->persist($user);
-//    $app->getEntityManager()->flush();
-//});
-
 $app->mount('/app', new App\Provider\AppControllerProvider());
 
 $app->before(function () use ($app) {

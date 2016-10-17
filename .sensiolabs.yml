@@ -1,0 +1,5 @@
+rules:
+  composer.unfixed_dependency_version:
+    enabled: false
+  web.apache_config:
+    enabled: false
