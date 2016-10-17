@@ -12,7 +12,7 @@
       "App\\": "app/classes/"
     }
   },
-  "description": "Scaffolding for silex/silex to kick-start creation of administration panels.",
+  "description": "Scaffolding for silex/silex to kick-start creation of responsive administration panels.",
   "homepage": "http://vaibhavpandeyvpz.github.io/silex-skeleton",
   "keywords": ["silex", "admin", "dashboard", "skeleton"],
   "license": "MIT",
