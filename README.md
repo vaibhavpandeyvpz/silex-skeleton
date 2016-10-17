@@ -16,6 +16,21 @@ sudo npm i -g bower gulp
 composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp
 ```
 
+Development
+-------
+For development, you can start a development server using [PHP](http://www.php.net/)'s built-in [server](http://php.net/manual/en/features.commandline.webserver.php) as follows:
+```bash
+php -S localhost:8080 -t public_html public_html/index_dev.php
+```
+
+Deployment
+-------
+On server, it is recommend to install a [SSL](https://www.ssls.com/) certificate and uncomment the following lines in ```public_html/.htaccess``` to enforce *https://* protocol and enable auto-redirect if access via *http://*:
+```htaccess
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+```
+
 License
 ------
 See [LICENSE.md](https://github.com/vaibhavpandeyvpz/silex-skeleton/blob/master/LICENSE.md) file.
