@@ -25,7 +25,7 @@ php -S localhost:8080 -t public_html public_html/index_dev.php
 
 Deployment
 -------
-On server, it is recommend to install a [SSL](https://www.ssls.com/) certificate and uncomment the following lines in ```public_html/.htaccess``` to enforce *https://* protocol and enable auto-redirect if access via *http://*:
+On server, it is recommend to install a [SSL](https://www.ssls.com/) certificate and uncomment the following lines in ```public_html/.htaccess``` to enforce **https://** protocol and enable auto-redirect if access via **http://**:
 ```htaccess
 RewriteCond %{HTTPS} off
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
