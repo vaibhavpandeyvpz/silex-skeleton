@@ -1,0 +1,26 @@
+{% macro flash_alert(clazz, messages) %}
+    <div class="alert alert-{{ clazz }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'close'|trans }}"><span aria-hidden="true">&times;</span></button>
+        <ul class="list-unstyled">
+            {% for message in messages %}
+                <li>{{ message|trans({}, 'flash') }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}
+
+{% if app.session.flashbag.has('danger') %}
+    {{ _self.flash_alert('danger', app.session.flashbag.get('danger') ) }}
+{% endif %}
+
+{% if app.session.flashbag.has('info') %}
+    {{ _self.flash_alert('info', app.session.flashbag.get('info') ) }}
+{% endif %}
+
+{% if app.session.flashbag.has('success') %}
+    {{ _self.flash_alert('success', app.session.flashbag.get('success') ) }}
+{% endif %}
+
+{% if app.session.flashbag.has('warning') %}
+    {{ _self.flash_alert('warning', app.session.flashbag.get('warning') ) }}
+{% endif %}

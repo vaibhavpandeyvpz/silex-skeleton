@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="{{ app.locale }}">
+<body>
+{% block content %}{% endblock %}
+<p>
+    {{ 'regards'|trans({}, 'emails') }}<br>
+    <strong>{{ 'author'|trans }}</strong><br>
+    {{ 'app'|trans }}
+</p>
+<p><small>{{ 'note'|trans({}, 'emails') }}</small></p>
+</body>
+</html>

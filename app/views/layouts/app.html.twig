@@ -1,0 +1,34 @@
+{% extends 'layouts/master.html.twig' %}
+
+{% block styles %}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navigation_menu.html.twig' %}
+    <header class="page-header">
+        <div class="container-fluid">
+            <div class="btn-toolbar pull-right">
+                {% block actions %}{% endblock %}
+            </div>
+            <h1>{{ title|trans }}</h1>
+        </div>
+    </header>
+    <ol class="breadcrumb">
+        {% for item in app.breadcrumbs.items %}
+            {% if item.route is null or loop.last %}
+                <li class="active">{{ item.text|trans }}</li>
+            {% else %}
+                <li><a href="{{ path(item.route, item.params) }}">{{ item.text|trans }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    <div class="container-fluid">
+        {% include 'partials/flash_messages.html.twig' %}
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}

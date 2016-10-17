@@ -1,0 +1,23 @@
+{% extends 'layouts/master.html.twig' %}
+
+{% block styles %}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+                <section class="section-account">
+                    <img class="img-responsive margin-bottom-16" src="{{ asset('images/logo.png') }}">
+                    {% include 'partials/flash_messages.html.twig' %}
+                    {% block content %}{% endblock %}
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

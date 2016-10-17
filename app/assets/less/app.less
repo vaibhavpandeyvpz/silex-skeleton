@@ -1,0 +1,32 @@
+@import "../../../bower_components/bootstrap/less/bootstrap";
+
+.form-control:focus { box-shadow: none }
+
+.form-panel .form-group:nth-last-child(2) { margin-bottom: 0 !important }
+
+.margin-bottom {
+    &-16 { margin-bottom: 16px }
+}
+
+.navbar:first-child { z-index: @zindex-navbar + 1 }
+
+.navbar-right { margin-right: -15px !important }
+
+.no-margin {
+    &-bottom { margin-bottom: 0 }
+    &-top { margin-top: 0 }
+}
+
+.page-header {
+  margin: 0;
+  padding: 14px 0;
+  h1 {
+    font-size: @font-size-h3;
+    margin: 5px 0 0;
+  }
+}
+
+.section-account {
+  margin-top: 16px;
+  @media (min-width: @screen-md-min) { margin-top: 96px }
+}

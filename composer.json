@@ -1,0 +1,52 @@
+{
+  "authors": [
+    {
+      "name": "Vaibhav Pandey",
+      "email": "contact@vaibhavpandey.com",
+      "homepage": "http://www.vaibhavpandey.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/classes/"
+    }
+  },
+  "description": "Scaffolding for silex/silex to kick-start creation of administration panels.",
+  "homepage": "http://vaibhavpandeyvpz.github.io/silex-skeleton",
+  "keywords": ["silex", "admin", "dashboard", "skeleton"],
+  "license": "MIT",
+  "name" : "vaibhavpandeyvpz/silex-skeleton",
+  "require": {
+    "php": ">=5.5.9",
+    "doctrine/orm": "^2.5",
+    "monolog/monolog": "^1.21",
+    "nesbot/carbon": "^1.21",
+    "rappasoft/laravel-helpers": "@dev",
+    "silex/silex": "^2.0",
+    "swiftmailer/swiftmailer": "^5.4",
+    "symfony/asset": "^3.1",
+    "symfony/config": "^3.1",
+    "symfony/form": "^3.1",
+    "symfony/translation": "^3.1",
+    "symfony/security": "^3.1",
+    "symfony/security-csrf": "^3.1",
+    "symfony/twig-bridge": "^3.1",
+    "symfony/validator": "^3.1",
+    "ua-parser/uap-php": "^3.4",
+    "vaibhavpandeyvpz/pimple-breadcrumbs": "^1.0",
+    "vaibhavpandeyvpz/pimple-config": "^1.0",
+    "vlucas/phpdotenv": "^2.4"
+  },
+  "scripts": {
+    "post-create-project-cmd": [
+      "bower i && npm i && gulp build",
+      "php -r \"copy('.env.example', '.env');\""
+    ]
+  },
+  "support": {
+    "email": "support@example.org",
+    "issues": "https://github.com/vaibhavpandeyvpz/silex-skeleton/issues"
+  },
+  "type": "project"
+}
