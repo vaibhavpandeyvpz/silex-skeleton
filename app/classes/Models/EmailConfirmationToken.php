@@ -36,6 +36,12 @@ class EmailConfirmationToken extends Model
     protected $token;
 
     /**
+     * @ORM\Column(name="email_hash", type="string", length=32, unique=true)
+     * @var string
+     */
+    protected $emailHash;
+
+    /**
      * @ORM\Column(name="is_consumed", type="boolean")
      * @var bool
      */
@@ -90,6 +96,22 @@ class EmailConfirmationToken extends Model
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmailHash()
+    {
+        return $this->emailHash;
+    }
+
+    /**
+     * @param string $emailHash
+     */
+    public function setEmailHash($emailHash)
+    {
+        $this->emailHash = $emailHash;
     }
 
     /**

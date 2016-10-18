@@ -58,8 +58,12 @@ class AccountController extends Controller
         if (is_null($emailConfirmationToken)) {
             throw new NotFoundHttpException();
         }
+        $user = $emailConfirmationToken->getUser();
+        if ($emailConfirmationToken->getEmailHash() !== md5($user->getEmail())) {
+            throw new BadRequestHttpException();
+        }
         $emailConfirmationToken->setConsumed(true);
-        $emailConfirmationToken->getUser()->setConfirmed(true);
+        $user->setConfirmed(true);
         $this->app->getEntityManager()->persist($emailConfirmationToken);
         $this->app->getEntityManager()->flush();
         $this->app->getFlashBag()->add('success', 'email_confirmed');
@@ -147,6 +151,7 @@ class AccountController extends Controller
             $user->setEmail($data->email);
             $user->setPassword($this->app->encodePassword($user, $data->password));
             $emailConfirmationToken = EmailConfirmationToken::createNew();
+            $emailConfirmationToken->setEmailHash(md5($data->email));
             $user->addEmailConfirmationToken($emailConfirmationToken);
             $this->app->getEntityManager()->persist($user);
             try {
