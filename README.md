@@ -12,7 +12,7 @@ sudo apt-get install nodejs
 # Install Bower & Gulp globally
 sudo npm i -g bower gulp
 
-# Create a new project in a folder 'yourapp'
+# Create a new project in a folder named 'yourapp'
 composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp
 
 # Setup configuration in '.env' file & prepare database
@@ -28,7 +28,7 @@ php -S localhost:8080 -t public_html public_html/index_dev.php
 
 Deployment
 -------
-On server, it is recommend to install a [SSL](https://www.ssls.com/) certificate and uncomment the following lines in ```public_html/.htaccess``` to enforce **https://** protocol and enable auto-redirect if accessed via **http://**:
+On server, it is recommended to install a [SSL](https://www.ssls.com/) certificate and uncomment the following lines in ```public_html/.htaccess``` to enforce **https://** protocol and enable auto-redirect if accessed via **http://**:
 ```htaccess
 RewriteCond %{HTTPS} off
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
