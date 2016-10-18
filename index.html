@@ -35,8 +35,11 @@ sudo apt-get install nodejs
 <span class="pl-c"># Install Bower &amp; Gulp globally</span>
 sudo npm i -g bower gulp
 
-<span class="pl-c"># Create a new project in folder 'yourapp'</span>
-composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp</pre></div>
+<span class="pl-c"># Create a new project in a folder named 'yourapp'</span>
+composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp
+
+<span class="pl-c"># Setup configuration in '.env' file &amp; prepare database</span>
+<span class="pl-c1">cd</span> yourapp <span class="pl-k">&amp;&amp;</span> mysql -u <span class="pl-s"><span class="pl-pds">'</span>db_username<span class="pl-pds">'</span></span> -p <span class="pl-s"><span class="pl-pds">'</span>db_name<span class="pl-pds">'</span></span> <span class="pl-k">&lt;</span> app/migrations/00000000000000_create_security_tables.sql</pre></div>
 
 <h2>
 <a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
@@ -48,7 +51,7 @@ composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp</pre></div>
 <h2>
 <a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deployment</h2>
 
-<p>On server, it is recommend to install a <a href="https://www.ssls.com/">SSL</a> certificate and uncomment the following lines in <code>public_html/.htaccess</code> to enforce <strong>https://</strong> protocol and enable auto-redirect if access via <strong>http://</strong>:</p>
+<p>On server, it is recommended to install a <a href="https://www.ssls.com/">SSL</a> certificate and uncomment the following lines in <code>public_html/.htaccess</code> to enforce <strong>https://</strong> protocol and enable auto-redirect if accessed via <strong>http://</strong>:</p>
 
 <pre lang="htaccess"><code>RewriteCond %{HTTPS} off
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
