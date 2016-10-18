@@ -11,7 +11,9 @@
 
 namespace App\Controllers;
 
-use DateTime;
+use App\Forms\RegisterModel;
+use App\Forms\RegisterType;
+use App\Models\EmailConfirmationToken;
 use App\Forms\ForgotPasswordModel;
 use App\Forms\ForgotPasswordType;
 use App\Forms\LoginType;
@@ -19,6 +21,8 @@ use App\Forms\ResetPasswordModel;
 use App\Forms\ResetPasswordType;
 use App\Models\PasswordResetToken;
 use App\Models\User;
+use DateTime;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +36,36 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class AccountController extends Controller
 {
+    /**
+     * @param string $token
+     * @return Response
+     */
+    public function confirmEmailAction($token)
+    {
+        $errors = $this->app->validate($token, [
+            new Assert\NotBlank(),
+            new Assert\Length(32)
+        ]);
+        if (count($errors) >= 1) {
+            throw new BadRequestHttpException();
+        }
+        /** @var EmailConfirmationToken $emailConfirmationToken */
+        $emailConfirmationToken = $this->app->getRepository(EmailConfirmationToken::class)
+            ->findOneBy([
+                'isConsumed' => false,
+                'token' => $token,
+            ]);
+        if (is_null($emailConfirmationToken)) {
+            throw new NotFoundHttpException();
+        }
+        $emailConfirmationToken->setConsumed(true);
+        $emailConfirmationToken->getUser()->setConfirmed(true);
+        $this->app->getEntityManager()->persist($emailConfirmationToken);
+        $this->app->getEntityManager()->flush();
+        $this->app->getFlashBag()->add('success', 'email_confirmed');
+        return $this->app->redirect($this->app->url('login'));
+    }
+
     /**
      * @param Request $request
      * @return Response
@@ -74,7 +108,7 @@ class AccountController extends Controller
             }
         }
         return $this->app->render('forgot_password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -91,7 +125,52 @@ class AccountController extends Controller
             $this->app->getFlashBag()->add('danger', $e);
         }
         return $this->app->render('login.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function registerAction(Request $request)
+    {
+        $form = $this->app->form(null, [], RegisterType::class)
+            ->setAction($this->app->path('register'))
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var RegisterModel $data */
+            $data = $form->getData();
+            $user = User::createNew();
+            $user->setName($data->name);
+            $user->setEmail($data->email);
+            $user->setPassword($this->app->encodePassword($user, $data->password));
+            $emailConfirmationToken = EmailConfirmationToken::createNew();
+            $user->addEmailConfirmationToken($emailConfirmationToken);
+            $this->app->getEntityManager()->persist($user);
+            try {
+                $this->app->getEntityManager()->flush();
+                $this->app->getFlashBag()->add('success', 'user_registered');
+                /** @noinspection PhpParamsInspection */
+                $this->app->mail(
+                    $this->app->createMessage()
+                        ->setTo([ $data->email => $data->name ])
+                        ->setSubject($this->app->trans('confirm_email_subject', [ '%app%' => $this->app->trans('app') ], 'emails'))
+                        ->setContentType('text/html')
+                        ->setBody($this->app->renderView('emails/confirm_email.html.twig', [
+                            'link' => $this->app->url('confirm_email', [ 'token' => $emailConfirmationToken->getToken() ])
+                        ]))
+                );
+                return $this->app->redirect($this->app->url('login'));
+            } catch (UniqueConstraintViolationException $e) {
+                $form->get('email')->addError(
+                    new FormError($this->app->trans('email_already_registered', [], 'validators'))
+                );
+            }
+        }
+        return $this->app->render('register.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 

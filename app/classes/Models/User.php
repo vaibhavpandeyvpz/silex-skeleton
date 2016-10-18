@@ -55,6 +55,12 @@ class User extends Model implements AdvancedUserInterface
     protected $roles;
 
     /**
+     * @ORM\Column(name="is_confirmed", type="boolean")
+     * @var bool
+     */
+    protected $isConfirmed;
+
+    /**
      * @ORM\Column(name="is_enabled", type="boolean")
      * @var bool
      */
@@ -65,6 +71,12 @@ class User extends Model implements AdvancedUserInterface
      * @var bool
      */
     protected $isLocked;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EmailConfirmationToken", mappedBy="user", cascade={"persist"})
+     * @var ArrayCollection
+     */
+    protected $emailConfirmationTokens;
 
     /**
      * @ORM\OneToMany(targetEntity="LoginHistory", mappedBy="user", cascade={"persist"})
@@ -81,6 +93,7 @@ class User extends Model implements AdvancedUserInterface
 
     public function __construct()
     {
+        $this->emailConfirmationTokens = new ArrayCollection();
         $this->loginHistory = new ArrayCollection();
         $this->passwordResetTokens = new ArrayCollection();
     }
@@ -93,6 +106,7 @@ class User extends Model implements AdvancedUserInterface
         $user = new static();
         $user->setRoles('ROLE_USER');
         $user->setSalt(str_random(16));
+        $user->setConfirmed(false);
         $user->setEnabled(true);
         $user->setLocked(false);
         $user->setCreatedAt(new DateTime());
@@ -190,6 +204,22 @@ class User extends Model implements AdvancedUserInterface
     /**
      * {@inheritdoc}
      */
+    public function isConfirmed()
+    {
+        return $this->isConfirmed;
+    }
+
+    /**
+     * @param bool $isConfirmed
+     */
+    public function setConfirmed($isConfirmed)
+    {
+        $this->isConfirmed = $isConfirmed;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function isEnabled()
     {
         return $this->isEnabled;
@@ -217,6 +247,23 @@ class User extends Model implements AdvancedUserInterface
     public function setLocked($isLocked)
     {
         $this->isLocked = $isLocked;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getEmailConfirmationTokens()
+    {
+        return $this->emailConfirmationTokens;
+    }
+
+    /**
+     * @param EmailConfirmationToken $emailConfirmationToken
+     */
+    public function addEmailConfirmationToken(EmailConfirmationToken $emailConfirmationToken)
+    {
+        $this->emailConfirmationTokens[] = $emailConfirmationToken;
+        $emailConfirmationToken->setUser($this);
     }
 
     /**

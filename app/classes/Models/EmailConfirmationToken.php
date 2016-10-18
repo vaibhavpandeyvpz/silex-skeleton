@@ -16,12 +16,12 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class PasswordResetToken
+ * Class EmailConfirmationToken
  * @package App\Models
  * @ORM\Entity
- * @ORM\Table(name="password_reset_tokens")
+ * @ORM\Table(name="email_confirmation_tokens")
  */
-class PasswordResetToken extends Model
+class EmailConfirmationToken extends Model
 {
     /**
      * @ORM\Column(name="user_id", type="integer")
@@ -42,13 +42,7 @@ class PasswordResetToken extends Model
     protected $isConsumed;
 
     /**
-     * @ORM\Column(name="expires_at", type="datetime")
-     * @var DateTime
-     */
-    protected $expiresAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="passwordResetTokens")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="emailConfirmationTokens")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @var User
      */
@@ -59,12 +53,11 @@ class PasswordResetToken extends Model
      */
     public static function createNew()
     {
-        $passwordResetToken = new static();
-        $passwordResetToken->setToken(str_random(32));
-        $passwordResetToken->setConsumed(false);
-        $passwordResetToken->setCreatedAt(new DateTime());
-        $passwordResetToken->setExpiresAt(Carbon::now()->addDay());
-        return $passwordResetToken;
+        $emailConfirmationToken = new static();
+        $emailConfirmationToken->setToken(str_random(32));
+        $emailConfirmationToken->setConsumed(false);
+        $emailConfirmationToken->setCreatedAt(new DateTime());
+        return $emailConfirmationToken;
     }
 
     /**
@@ -113,22 +106,6 @@ class PasswordResetToken extends Model
     public function setConsumed($consumed)
     {
         $this->isConsumed = $consumed;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getExpiresAt()
-    {
-        return $this->expiresAt;
-    }
-
-    /**
-     * @param DateTime $timestamp
-     */
-    public function setExpiresAt(DateTime $timestamp)
-    {
-        $this->expiresAt = $timestamp;
     }
 
     /**

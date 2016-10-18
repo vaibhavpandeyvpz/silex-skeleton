@@ -10,6 +10,7 @@
  */
 
 return [
+    'email_already_registered' => 'This email address is already registered.',
     'email_not_found' => 'No user found with this email address.',
     'passwords_mismatch' => 'Both password must match each other.',
 ];

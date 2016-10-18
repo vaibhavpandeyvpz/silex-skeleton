@@ -1,0 +1,7 @@
+{% extends 'layouts/email.html.twig' %}
+
+{% block content %}
+    <h1>{{ 'confirm_email_heading'|trans({}, 'emails') }}</h1>
+    <p>{{ 'confirm_email_message'|trans({'%link%': link}, 'emails')|raw }}</p>
+    <p><a href="{{ link }}">{{ link }}</a></p>
+{% endblock %}

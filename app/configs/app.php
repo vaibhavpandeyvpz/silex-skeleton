@@ -10,6 +10,6 @@
  */
 
 return [
-    'debug' => false,
+    'debug' => getenv('APP_ENV') == 'debug',
     'locale' => 'en',
 ];

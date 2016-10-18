@@ -55,10 +55,6 @@ $app->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/conf
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/translations.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/views.php'));
 
-if (getenv('APP_ENV') == 'debug') {
-    $app->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/app.dev.php', true));
-}
-
 // </editor-fold>
 
 // <editor-fold desc="Routes">
@@ -67,6 +63,9 @@ $app->get('/', function () use ($app) {
     return $app->redirect($app->url('dashboard'));
 });
 
+$app->get('/confirm-email/{token}', 'AccountController:confirmEmailAction')
+    ->bind('confirm_email');
+
 $app->get('/forgot-password', 'AccountController:forgotPasswordAction')
     ->bind('forgot_password');
 
@@ -74,6 +73,11 @@ $app->post('/forgot-password', 'AccountController:forgotPasswordAction');
 
 $app->get('/login', 'AccountController:loginAction')
     ->bind('login');
+
+$app->get('/register', 'AccountController:registerAction')
+    ->bind('register');
+
+$app->post('/register', 'AccountController:registerAction');
 
 $app->get('/reset-password/{token}', 'AccountController:resetPasswordAction')
     ->bind('reset_password');
