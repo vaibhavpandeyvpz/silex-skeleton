@@ -17,16 +17,16 @@ CREATE TABLE IF NOT EXISTS `users`
 
 CREATE TABLE IF NOT EXISTS `email_confirmation_tokens`
 (
-    `id` BIGINT UNSIGNED AUTO_INCREMENT,
-    `user_id` BIGINT UNSIGNED NOT NULL,
-    `token` VARCHAR (64) NOT NULL,
-    `email_hash` VARCHAR (32) NOT NULL,
-    `is_consumed` BOOLEAN NOT NULL DEFAULT FALSE,
-    `created_at` DATETIME DEFAULT NULL,
-    `updated_at` DATETIME DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY (`token`),
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  `id` BIGINT UNSIGNED AUTO_INCREMENT,
+  `user_id` BIGINT UNSIGNED NOT NULL,
+  `token` VARCHAR (64) NOT NULL,
+  `email_hash` VARCHAR (32) NOT NULL,
+  `is_consumed` BOOLEAN NOT NULL DEFAULT FALSE,
+  `created_at` DATETIME DEFAULT NULL,
+  `updated_at` DATETIME DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`token`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `login_history`
