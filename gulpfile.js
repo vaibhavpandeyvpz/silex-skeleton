@@ -98,11 +98,11 @@ gulp.task('rebuild', ['clean'], () => gulp.start('build'));
 
 gulp.task('watch', () => {
     G.watch(
-        ['app/assets/less/app.less', 'app/assets/less/imports/*.less'],
+        ['app/assets/less/imports/*.less', 'app/assets/less/app.less'],
         G.batch((e, done) => gulp.start('css:app', done))
     );
     G.watch(
-        ['app/assets/less/portal.less', 'app/assets/less/imports/*.less'],
+        ['app/assets/less/imports/*.less', 'app/assets/less/portal.less'],
         G.batch((e, done) => gulp.start('css:portal', done))
     );
     G.watch(
