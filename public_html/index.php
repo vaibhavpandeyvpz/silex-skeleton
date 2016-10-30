@@ -59,9 +59,8 @@ $app->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/conf
 
 // <editor-fold desc="Routes">
 
-$app->get('/', function () use ($app) {
-    return $app->redirect($app->url('dashboard'));
-});
+$app->get('/', 'HomeController:indexAction')
+    ->bind('home');
 
 $app->get('/confirm-email/{token}', 'AccountController:confirmEmailAction')
     ->bind('confirm_email');

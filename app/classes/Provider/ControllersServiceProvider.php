@@ -13,6 +13,7 @@ namespace App\Provider;
 
 use App\Controllers\AccountController;
 use App\Controllers\DashboardController;
+use App\Controllers\HomeController;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -32,6 +33,9 @@ class ControllersServiceProvider implements ServiceProviderInterface
         };
         $app['DashboardController'] = function ($app) {
             return new DashboardController($app);
+        };
+        $app['HomeController'] = function ($app) {
+            return new HomeController($app);
         };
     }
 }

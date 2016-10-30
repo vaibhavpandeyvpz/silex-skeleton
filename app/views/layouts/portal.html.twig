@@ -7,3 +7,11 @@
 {% block scripts %}
     <script src="{{ asset('js/portal.js') }}"></script>
 {% endblock %}
+
+{% block body %}
+    {% include 'partials/portal_menu.html.twig' %}
+    <div class="container">
+        {% include 'partials/flash_messages.html.twig' %}
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
