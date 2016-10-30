@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block meta %}
-        <title>{{ title }} - {{ 'app'|trans }}</title>
+        {% if title is defined %}
+            <title>{{ title }} - {{ 'app'|trans }}</title>
+        {% else %}
+            <title>{{ 'app'|trans }}</title>
+        {% endif %}
     {% endblock %}
     {% block styles %}
     {% endblock %}
