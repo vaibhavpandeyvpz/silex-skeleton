@@ -1,0 +1,8 @@
+{% extends 'layouts/app.html.twig' %}
+
+{% set title = title|trans %}
+
+{% block content %}
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    {{ form(form) }}
+{% endblock %}

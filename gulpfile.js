@@ -27,7 +27,12 @@ gulp.task('css:app', () => {
             cascade: false
         }))
         .pipe(G.if(minify, G.cssmin()))
-        .pipe(G.addSrc.append('bower_components/font-awesome/css/font-awesome.min.css'))
+        .pipe(G.addSrc.prepend('bower_components/select2/dist/css/select2.min.css'))
+        .pipe(G.addSrc.append([
+            'bower_components/font-awesome/css/font-awesome.min.css',
+            'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css',
+            'bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
+        ]))
         .pipe(G.concat('app.css'))
         .pipe(gulp.dest('public_html/css'));
 });
@@ -71,10 +76,22 @@ gulp.task('js:app', () => {
         .pipe(G.plumber({errorHandler: plumberr}))
         .pipe(G.include())
         .pipe(G.babel())
+        .pipe(G.addSrc.prepend([
+            'bower_components/bootbox.js/bootbox.js',
+            'bower_components/sprintfjs/sprintf.js',
+        ]))
         .pipe(G.if(minify, G.uglify()))
         .pipe(G.addSrc.prepend([
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/bootstrap/dist/js/bootstrap.min.js',
+            'bower_components/clipboard/dist/clipboard.min.js',
+            'bower_components/datatables.net/js/jquery.dataTables.min.js',
+            'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js',
+            'bower_components/datatables.net-responsive/js/dataTables.responsive.min.js',
+            'bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js',
+            'bower_components/moment/min/moment-with-locales.min.js',
+            'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+            'bower_components/select2/dist/js/select2.min.js',
         ]))
         .pipe(G.concat('app.js'))
         .pipe(gulp.dest('public_html/js'));

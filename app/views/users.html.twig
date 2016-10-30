@@ -1,0 +1,69 @@
+{% extends 'layouts/app.html.twig' %}
+
+{% set title = 'users'|transchoice(2) %}
+
+{% block scripts %}
+    <script>
+        var translations = {
+            never: "{{ 'never'|trans }}",
+            no: "{{ 'no'|trans }}",
+            ROLE_ADMIN: "{{ 'administrator'|trans }}",
+            ROLE_USER: "{{ 'users'|transchoice(1) }}",
+            yes: "{{ 'yes'|trans }}"
+        };
+        var urls = {
+            base: "{{ path('users') }}"
+        };
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="btn-toolbar margin-bottom-16 pull-right">
+        <a class="btn btn-success" role="button" href="{{ path('users_add') }}">
+            <i class="fa fa-fw fa-plus"></i> <span class="hidden-xs">{{ 'add'|trans }}</span>
+        </a>
+    </div>
+    <div class="btn-toolbar margin-bottom-16" id="toolbar-users">
+        <button class="btn btn-default" role="button" data-action="refresh" data-toggle="tooltip" title="{{ 'refresh'|trans }}">
+            <i class="fa fa-fw fa-refresh"></i>
+        </button>
+        <button class="btn btn-info" role="button" data-action="redirect" data-redirect-to="edit" data-require-selection disabled>
+            <i class="fa fa-fw fa-edit"></i> <span class="hidden-xs">{{ 'edit'|trans }}</span>
+        </button>
+        <button class="btn btn-danger" role="button" data-action="redirect" data-redirect-to="delete" data-confirm="{{ 'confirm_user_delete'|trans }}" data-require-selection disabled>
+            <i class="fa fa-fw fa-trash"></i> <span class="hidden-xs">{{ 'delete'|trans }}</span>
+        </button>
+    </div>
+    {% include 'partials/ajax_loader.html.twig' with {loader_id: 'loader-users'} %}
+    <table class="table table-bordered table-hover" data-role="datagrid" data-loader="#loader-users" data-toolbar="#toolbar-users" data-sorting='[[8, "desc"]]'>
+        <thead>
+        <tr>
+            <th data-column="details">{{ 'details'|trans }}</th>
+            <th data-column="id" class="all">{{ 'id'|trans }}</th>
+            <th data-column="name">{{ 'name'|trans }}</th>
+            <th data-column="email" class="all">{{ 'email'|trans }}</th>
+            <th data-column="roles">{{ 'roles'|trans }}</th>
+            <th data-column="is_confirmed" data-renderer="boolean">{{ 'confirmed'|trans }}</th>
+            <th data-column="is_enabled" data-renderer="boolean">{{ 'enabled'|trans }}</th>
+            <th data-column="is_locked" data-renderer="boolean">{{ 'locked'|trans }}</th>
+            <th data-column="created_at" data-renderer="time_diff">{{ 'created_at'|trans }}</th>
+            <th data-column="updated_at" data-renderer="time_diff">{{ 'updated_at'|trans }}</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>{{ 'details'|trans }}</th>
+            <th>{{ 'id'|trans }}</th>
+            <th>{{ 'name'|trans }}</th>
+            <th>{{ 'email'|trans }}</th>
+            <th>{{ 'roles'|trans }}</th>
+            <th>{{ 'confirmed'|trans }}</th>
+            <th>{{ 'enabled'|trans }}</th>
+            <th>{{ 'locked'|trans }}</th>
+            <th>{{ 'created_at'|trans }}</th>
+            <th>{{ 'updated_at'|trans }}</th>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

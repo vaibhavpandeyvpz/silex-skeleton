@@ -30,6 +30,16 @@ class AppControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
         $controllers->get('/', 'DashboardController:indexAction')
             ->bind('dashboard');
+        $controllers->get('/users', 'UsersController:indexAction')
+            ->bind('users');
+        $controllers->get('/users/add', 'UsersController:addAction')
+            ->bind('users_add');
+        $controllers->post('/users/add', 'UsersController:addAction');
+        $controllers->get('/users/grid', 'UsersController:gridAction');
+        $controllers->get('/users/{id}/delete', 'UsersController:deleteAction');
+        $controllers->get('/users/{id}/edit', 'UsersController:editAction')
+            ->bind('users_edit');
+        $controllers->post('/users/{id}/edit', 'UsersController:editAction');
         return $controllers;
     }
 }
