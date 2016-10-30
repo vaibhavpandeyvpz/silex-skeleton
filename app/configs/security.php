@@ -11,7 +11,7 @@
 
 return [
     'security.access_rules' => [
-        [ '^/app/users/', 'ROLE_ADMIN' ],
+        [ '^/app/users', 'ROLE_ADMIN' ],
         [ '^/app/', 'ROLE_USER' ],
     ],
     'security.authentication.logout_handler.app' => function ($app) {
