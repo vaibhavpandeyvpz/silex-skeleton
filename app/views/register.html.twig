@@ -6,7 +6,9 @@
     <div class="panel panel-primary">
         <div class="panel-body">
             {% form_theme form 'bootstrap_3_layout.html.twig' %}
-            {{ form(form, {attr: {class: 'form-panel'}}) }}
+            {{ form_start(form) }}
+                {{ form_row(form._token) }}
+            {{ form_end(form) }}
         </div>
         <div class="panel-footer">
             <p class="text-right no-margin-bottom">{{ 'register_help'|trans({'%link%': path('login')})|raw }}</p>

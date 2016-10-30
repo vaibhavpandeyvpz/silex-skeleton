@@ -16,7 +16,9 @@ gulp.task('clean', () => {
         .pipe(G.rimraf());
 });
 
-gulp.task('css', () => {
+gulp.task('css', ['css:app', 'css:portal']);
+
+gulp.task('css:app', () => {
     return gulp.src('app/assets/less/app.less')
         .pipe(G.plumber({errorHandler: plumberr}))
         .pipe(G.less())
@@ -27,6 +29,20 @@ gulp.task('css', () => {
         .pipe(G.if(minify, G.cssmin()))
         .pipe(G.addSrc.append('bower_components/font-awesome/css/font-awesome.min.css'))
         .pipe(G.concat('app.css'))
+        .pipe(gulp.dest('public_html/css'));
+});
+
+gulp.task('css:portal', () => {
+    return gulp.src('app/assets/less/portal.less')
+        .pipe(G.plumber({errorHandler: plumberr}))
+        .pipe(G.less())
+        .pipe(G.autoprefixer({
+            browsers: ['last 2 versions', 'ie 10'],
+            cascade: false
+        }))
+        .pipe(G.if(minify, G.cssmin()))
+        .pipe(G.addSrc.append('bower_components/font-awesome/css/font-awesome.min.css'))
+        .pipe(G.concat('portal.css'))
         .pipe(gulp.dest('public_html/css'));
 });
 
@@ -48,7 +64,9 @@ gulp.task('images', () => {
         .pipe(gulp.dest('public_html/images'));
 });
 
-gulp.task('js', () => {
+gulp.task('js', ['js:app', 'js:portal']);
+
+gulp.task('js:app', () => {
     return gulp.src('app/assets/js/app.js')
         .pipe(G.plumber({errorHandler: plumberr}))
         .pipe(G.babel())
@@ -61,9 +79,30 @@ gulp.task('js', () => {
         .pipe(gulp.dest('public_html/js'));
 });
 
+gulp.task('js:portal', () => {
+    return gulp.src('app/assets/js/portal.js')
+        .pipe(G.plumber({errorHandler: plumberr}))
+        .pipe(G.babel())
+        .pipe(G.if(minify, G.uglify()))
+        .pipe(G.addSrc.prepend([
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/bootstrap/dist/js/bootstrap.min.js',
+        ]))
+        .pipe(G.concat('portal.js'))
+        .pipe(gulp.dest('public_html/js'));
+});
+
 gulp.task('rebuild', ['clean'], () => gulp.start('build'));
 
 gulp.task('watch', () => {
-    G.watch('app/assets/less/**/*.less', G.batch((e, done) => gulp.start('css', done)));
-    G.watch('app/assets/js/**/*.js', G.batch((e, done) => gulp.start('js', done)));
+    G.watch(
+        ['app/assets/less/app.less', 'app/assets/less/imports/*.less'],
+        G.batch((e, done) => gulp.start('css:app', done))
+    );
+    G.watch(
+        ['app/assets/less/portal.less', 'app/assets/less/imports/*.less'],
+        G.batch((e, done) => gulp.start('css:portal', done))
+    );
+    G.watch('app/assets/js/app.js', G.batch((e, done) => gulp.start('js:app', done)));
+    G.watch('app/assets/js/portal.js', G.batch((e, done) => gulp.start('js:portal', done)));
 });
