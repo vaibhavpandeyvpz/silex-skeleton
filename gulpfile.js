@@ -90,7 +90,6 @@ gulp.task('js:app', () => {
             'bower_components/datatables.net-responsive/js/dataTables.responsive.min.js',
             'bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js',
             'bower_components/moment/min/moment-with-locales.min.js',
-            'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
             'bower_components/select2/dist/js/select2.min.js',
         ]))
         .pipe(G.concat('app.js'))

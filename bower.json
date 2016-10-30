@@ -4,7 +4,6 @@
     "bootbox.js": "^4.4.0",
     "bootstrap": "^3.3.7",
     "datatables.net-responsive-bs": "^2.1.0",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.43",
     "font-awesome": "^4.7.0",
     "jquery": "^1.12.4",
     "moment": "^2.15.2",
