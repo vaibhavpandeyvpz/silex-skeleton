@@ -69,6 +69,7 @@ gulp.task('js', ['js:app', 'js:portal']);
 gulp.task('js:app', () => {
     return gulp.src('app/assets/js/app.js')
         .pipe(G.plumber({errorHandler: plumberr}))
+        .pipe(G.include())
         .pipe(G.babel())
         .pipe(G.if(minify, G.uglify()))
         .pipe(G.addSrc.prepend([
@@ -82,6 +83,7 @@ gulp.task('js:app', () => {
 gulp.task('js:portal', () => {
     return gulp.src('app/assets/js/portal.js')
         .pipe(G.plumber({errorHandler: plumberr}))
+        .pipe(G.include())
         .pipe(G.babel())
         .pipe(G.if(minify, G.uglify()))
         .pipe(G.addSrc.prepend([
@@ -103,6 +105,12 @@ gulp.task('watch', () => {
         ['app/assets/less/portal.less', 'app/assets/less/imports/*.less'],
         G.batch((e, done) => gulp.start('css:portal', done))
     );
-    G.watch('app/assets/js/app.js', G.batch((e, done) => gulp.start('js:app', done)));
-    G.watch('app/assets/js/portal.js', G.batch((e, done) => gulp.start('js:portal', done)));
+    G.watch(
+        ['app/assets/js/imports/*.js', 'app/assets/js/app.js'],
+        G.batch((e, done) => gulp.start('js:app', done))
+    );
+    G.watch(
+        ['app/assets/js/imports/*.js', 'app/assets/js/portal.js'],
+        G.batch((e, done) => gulp.start('js:portal', done))
+    );
 });
