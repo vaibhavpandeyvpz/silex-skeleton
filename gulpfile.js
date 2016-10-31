@@ -84,7 +84,6 @@ gulp.task('js:app', () => {
         .pipe(G.addSrc.prepend([
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/bootstrap/dist/js/bootstrap.min.js',
-            'bower_components/clipboard/dist/clipboard.min.js',
             'bower_components/datatables.net/js/jquery.dataTables.min.js',
             'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js',
             'bower_components/datatables.net-responsive/js/dataTables.responsive.min.js',
