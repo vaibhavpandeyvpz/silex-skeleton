@@ -15,8 +15,12 @@ sudo npm i -g bower gulp
 # Create a new project in a folder named 'yourapp'
 composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp
 
-# Setup configuration in '.env' file & prepare database
-cd yourapp && mysql -u 'db_username' -p 'db_name' < app/migrations/00000000000000_create_security_tables.sql
+# Setup configuration in '.env' file
+cd yourapp && nano .env
+
+# Prepare database & create admin user
+mysql -u 'db_username' -p 'db_name' < app/migrations/00000000000000_create_security_tables.sql
+mysql -u 'db_username' -p 'db_name' < app/migrations/11111111111111_insert_admin_user.sql
 ```
 
 Development
