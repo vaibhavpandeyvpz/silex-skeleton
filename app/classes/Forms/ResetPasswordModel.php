@@ -35,7 +35,7 @@ class ResetPasswordModel
             new Assert\NotBlank(),
             new Assert\Length([
                 'min' => 8,
-                'max' => 32
+                'max' => 32,
             ]),
         ]);
     }

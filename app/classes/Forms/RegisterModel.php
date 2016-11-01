@@ -45,7 +45,7 @@ class RegisterModel
             new Assert\NotBlank(),
             new Assert\Length([
                 'min' => 2,
-                'max' => 128
+                'max' => 128,
             ]),
         ]);
         $metadata->addPropertyConstraints('email', [
@@ -58,7 +58,7 @@ class RegisterModel
             new Assert\NotBlank(),
             new Assert\Length([
                 'min' => 8,
-                'max' => 32
+                'max' => 32,
             ]),
         ]);
     }

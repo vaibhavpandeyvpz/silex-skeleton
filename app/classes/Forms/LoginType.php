@@ -32,16 +32,16 @@ class LoginType extends AbstractType
     {
         $builder->add('_username', EmailType::class, [
             'attr' => [ 'autofocus' => 'autofocus' ],
-            'label' => 'email'
+            'label' => 'email',
         ]);
         $builder->add('_password', PasswordType::class, [ 'label' => 'password' ]);
         $builder->add('_remember_me', CheckboxType::class, [
             'label' => 'remember_me',
-            'required' => false
+            'required' => false,
         ]);
         $builder->add('submit', SubmitType::class, [
             'attr' => [ 'class' => 'btn btn-success' ],
-            'label' => 'login'
+            'label' => 'login',
         ]);
         $builder->setMethod('POST');
     }

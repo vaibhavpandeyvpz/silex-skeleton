@@ -48,7 +48,7 @@ class RegisterType extends AbstractType
         ]);
         $builder->add('submit', SubmitType::class, [
             'attr' => [ 'class' => 'btn btn-success' ],
-            'label' => 'register'
+            'label' => 'register',
         ]);
         $builder->setMethod('POST');
     }

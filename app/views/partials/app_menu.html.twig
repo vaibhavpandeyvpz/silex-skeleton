@@ -13,6 +13,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-account">
             <ul class="nav navbar-nav navbar-right visible-xs">
+                <li><a href="{{ path('profile') }}">{{ 'profile'|trans }}</a></li>
                 <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right hidden-xs">
@@ -21,6 +22,7 @@
                         {{ 'hi'|trans({'%name%': app.user.name}) }} <span class="fa fa-fw fa-caret-down"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ path('profile') }}">{{ 'profile'|trans }}</a></li>
                         <li><a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a></li>
                     </ul>
                 </li>

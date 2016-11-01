@@ -220,7 +220,6 @@ class AccountController extends Controller
         }
         return $this->app->render('reset_password.html.twig', [
             'form' => $form->createView(),
-            'token' => $token,
         ]);
     }
 }

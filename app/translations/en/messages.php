@@ -42,6 +42,7 @@ return [
     'new_password' => 'New Password',
     'no' => 'No',
     'password' => 'Password',
+    'profile' => 'Profile',
     'refresh' => 'Refresh',
     'register' => 'Register',
     'register_help' => 'Already registered? Login <a href="%link%">here</a>.',

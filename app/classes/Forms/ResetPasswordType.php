@@ -41,7 +41,7 @@ class ResetPasswordType extends AbstractType
         ]);
         $builder->add('submit', SubmitType::class, [
             'attr' => [ 'class' => 'btn btn-success' ],
-            'label' => 'reset_password'
+            'label' => 'reset_password',
         ]);
         $builder->setMethod('POST');
     }

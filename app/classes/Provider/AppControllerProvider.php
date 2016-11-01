@@ -30,6 +30,9 @@ class AppControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
         $controllers->get('/', 'DashboardController:indexAction')
             ->bind('dashboard');
+        $controllers->get('/profile', 'ProfileController:indexAction')
+            ->bind('profile');
+        $controllers->post('/profile', 'ProfileController:indexAction');
         $controllers->get('/users', 'UsersController:indexAction')
             ->bind('users');
         $controllers->get('/users/add', 'UsersController:addAction')

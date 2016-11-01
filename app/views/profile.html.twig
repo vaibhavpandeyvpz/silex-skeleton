@@ -1,0 +1,17 @@
+{% extends 'layouts/app.html.twig' %}
+
+{% set title = 'profile'|trans %}
+
+{% block content %}
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="profile-email-readonly">{{ 'email'|trans }}</label>
+            <div class="col-sm-10">
+                <input type="email" id="profile-email-readonly" class="form-control" value="{{ app.user.email }}" tabindex="-1" readonly>
+            </div>
+        </div>
+        {{ form_row(form.new_password) }}
+    {{ form_end(form) }}
+{% endblock %}

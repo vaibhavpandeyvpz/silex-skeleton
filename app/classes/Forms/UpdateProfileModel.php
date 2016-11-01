@@ -15,10 +15,10 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class AddEditUserModel
+ * Class UpdateProfileModel
  * @package App\Forms
  */
-class AddEditUserModel
+class UpdateProfileModel
 {
     /**
      * @var string
@@ -28,32 +28,7 @@ class AddEditUserModel
     /**
      * @var string
      */
-    public $email;
-
-    /**
-     * @var string
-     */
-    public $password;
-
-    /**
-     * @var string[]
-     */
-    public $roles;
-
-    /**
-     * @var bool
-     */
-    public $is_confirmed;
-
-    /**
-     * @var bool
-     */
-    public $is_enabled;
-
-    /**
-     * @var bool
-     */
-    public $is_locked;
+    public $new_password;
 
     /**
      * @param ClassMetadata $metadata
@@ -68,26 +43,10 @@ class AddEditUserModel
                 'max' => 128,
             ]),
         ]);
-        $metadata->addPropertyConstraints('email', [
-            new Assert\Required(),
-            new Assert\NotBlank(),
-            new Assert\Email(),
-        ]);
-        $metadata->addPropertyConstraints('password', [
+        $metadata->addPropertyConstraints('new_password', [
             new Assert\Length([
                 'min' => 8,
                 'max' => 32,
-            ]),
-        ]);
-        $metadata->addPropertyConstraints('roles', [
-            new Assert\Required(),
-            new Assert\NotBlank(),
-            new Assert\Choice([
-                'choices' => [
-                    'ROLE_ADMIN',
-                    'ROLE_USER',
-                ],
-                'multiple' => true,
             ]),
         ]);
     }
