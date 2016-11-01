@@ -87,7 +87,7 @@ $app->mount('/app', new App\Provider\AppControllerProvider())
     ->before(new App\Middleware\ConfirmEmailMiddleware());
 
 $app->before(function () use ($app) {
-    $app->addBreadcrumbItem('app', 'dashboard');
+    $app->addBreadcrumbItem('app', 'home');
 });
 
 // </editor-fold>
