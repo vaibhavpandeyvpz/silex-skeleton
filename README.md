@@ -3,7 +3,6 @@ Scaffolding for [silex/silex](http://silex.sensiolabs.org/) to kick-start creati
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f20cf80f-8fe5-4572-b276-bf5c70115ab1/mini.png)](https://insight.sensiolabs.com/projects/f20cf80f-8fe5-4572-b276-bf5c70115ab1) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vaibhavpandeyvpz/silex-skeleton/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vaibhavpandeyvpz/silex-skeleton/?branch=master) [![Total Downloads](https://img.shields.io/packagist/dt/vaibhavpandeyvpz/silex-skeleton.svg?style=flat-square)](https://packagist.org/packages/vaibhavpandeyvpz/silex-skeleton) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md) 
 
-
 Features
 -------
 - User authentication and management
@@ -42,6 +41,8 @@ For development, you can start a development server using [PHP](http://www.php.n
 ```bash
 php -S localhost:8080 -t public_html public_html/index_dev.php
 ```
+
+Default **admin** username is ```admin@silex-skeleton.app``` and password is ```12345678```.
 
 Deployment
 -------
