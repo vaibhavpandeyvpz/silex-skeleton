@@ -16,6 +16,7 @@ return [
     'administrator' => 'Administrator',
     'app' => 'Project Name',
     'author' => 'Your Name',
+    'back_to_home' => 'Back to Home',
     'close' => 'Close',
     'confirm_password' => 'Confirm Password',
     'confirm_user_delete' => 'Are you sure to delete selected user?',

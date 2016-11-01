@@ -8,6 +8,7 @@
                     <img class="img-responsive margin-bottom-16" src="{{ asset('images/logo.png') }}">
                     {% include 'partials/flash_messages.html.twig' %}
                     {% block content %}{% endblock %}
+                    <p><a href="{{ path('home') }}">&laquo; {{ 'back_to_home'|trans }}</a></p>
                 </section>
             </div>
         </div>
