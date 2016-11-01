@@ -38,8 +38,12 @@ sudo npm i -g bower gulp
 <span class="pl-c"># Create a new project in a folder named 'yourapp'</span>
 composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp
 
-<span class="pl-c"># Setup configuration in '.env' file &amp; prepare database</span>
-<span class="pl-c1">cd</span> yourapp <span class="pl-k">&amp;&amp;</span> mysql -u <span class="pl-s"><span class="pl-pds">'</span>db_username<span class="pl-pds">'</span></span> -p <span class="pl-s"><span class="pl-pds">'</span>db_name<span class="pl-pds">'</span></span> <span class="pl-k">&lt;</span> app/migrations/00000000000000_create_security_tables.sql</pre></div>
+<span class="pl-c"># Setup configuration in '.env' file</span>
+<span class="pl-c1">cd</span> yourapp <span class="pl-k">&amp;&amp;</span> nano .env
+
+<span class="pl-c"># Prepare database &amp; create admin user</span>
+mysql -u <span class="pl-s"><span class="pl-pds">'</span>db_username<span class="pl-pds">'</span></span> -p <span class="pl-s"><span class="pl-pds">'</span>db_name<span class="pl-pds">'</span></span> <span class="pl-k">&lt;</span> app/migrations/00000000000000_create_security_tables.sql
+mysql -u <span class="pl-s"><span class="pl-pds">'</span>db_username<span class="pl-pds">'</span></span> -p <span class="pl-s"><span class="pl-pds">'</span>db_name<span class="pl-pds">'</span></span> <span class="pl-k">&lt;</span> app/migrations/11111111111111_insert_admin_user.sql</pre></div>
 
 <h2>
 <a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
