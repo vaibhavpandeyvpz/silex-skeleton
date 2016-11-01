@@ -32,6 +32,16 @@ php -S localhost:8080 -t public_html public_html/index_dev.php
 
 Deployment
 -------
+Set ```APP_ENV``` to ```production``` in ```.env``` file as follows to enable various caching systems:
+```
+APP_ENV=production
+```
+
+Minify static assets before deployment to server:
+```
+gulp build --production
+```
+
 On server, it is recommended to install a [SSL](https://www.ssls.com/) certificate and uncomment the following lines in ```public_html/.htaccess``` to enforce **https://** protocol and enable auto-redirect if accessed via **http://**:
 ```htaccess
 RewriteCond %{HTTPS} off

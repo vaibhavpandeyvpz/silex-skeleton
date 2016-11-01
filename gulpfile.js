@@ -11,6 +11,8 @@ const plumberr = function (err) {
     this.emit('end');
 };
 
+gulp.task('build', ['css', 'fonts', 'images', 'js']);
+
 gulp.task('clean', () => {
     return gulp.src('/public_html/{cs,font,image,j}s/**/*')
         .pipe(G.rimraf());
@@ -52,8 +54,6 @@ gulp.task('css:portal', () => {
 });
 
 gulp.task('default', ['rebuild'], () => gulp.start('watch'));
-
-gulp.task('build', ['css', 'fonts', 'images', 'js']);
 
 gulp.task('fonts', () => {
     var paths = [
