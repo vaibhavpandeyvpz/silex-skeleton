@@ -3,6 +3,19 @@ Scaffolding for [silex/silex](http://silex.sensiolabs.org/) to kick-start creati
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f20cf80f-8fe5-4572-b276-bf5c70115ab1/mini.png)](https://insight.sensiolabs.com/projects/f20cf80f-8fe5-4572-b276-bf5c70115ab1) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vaibhavpandeyvpz/silex-skeleton/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vaibhavpandeyvpz/silex-skeleton/?branch=master) [![Total Downloads](https://img.shields.io/packagist/dt/vaibhavpandeyvpz/silex-skeleton.svg?style=flat-square)](https://packagist.org/packages/vaibhavpandeyvpz/silex-skeleton) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md) 
 
+
+Features
+-------
+- User authentication and management
+- Role-based access control
+- Email address confirmations
+- Password reset via email
+- Assets are built & minified using [Gulp](http://gulpjs.com/)
+- Full MVC w/ [Doctrine](http://www.doctrine-project.org/projects/orm.html) ORM, [Twig](http://twig.sensiolabs.org/) templates
+- Secure by default w/ CSRF protection
+- Various caching systems for performance
+- Source-code as per [PSR](http://www.php-fig.org/psr/) coding standards
+
 Install
 -------
 ```bash
