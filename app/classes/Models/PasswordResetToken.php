@@ -132,6 +132,14 @@ class PasswordResetToken extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function isExpired()
+    {
+        return $this->getExpiresAt() < new DateTime();
+    }
+
+    /**
      * @return User
      */
     public function getUser()

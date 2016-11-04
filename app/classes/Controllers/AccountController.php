@@ -206,7 +206,7 @@ class AccountController extends Controller
                     'isConsumed' => false,
                     'token' => $token,
                 ]);
-            if (is_null($passwordResetToken) || ($passwordResetToken->getExpiresAt() < new DateTime())) {
+            if (is_null($passwordResetToken) || $passwordResetToken->isExpired()) {
                 throw new NotFoundHttpException();
             }
             $passwordResetToken->setConsumed(true);
