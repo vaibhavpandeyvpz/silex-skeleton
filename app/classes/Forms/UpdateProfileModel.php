@@ -43,11 +43,9 @@ class UpdateProfileModel
                 'max' => 128,
             ]),
         ]);
-        $metadata->addPropertyConstraints('new_password', [
-            new Assert\Length([
-                'min' => 8,
-                'max' => 32,
-            ]),
-        ]);
+        $metadata->addPropertyConstraint('new_password', new Assert\Length([
+            'min' => 8,
+            'max' => 32,
+        ]));
     }
 }

@@ -36,7 +36,7 @@
         </button>
     </div>
     {% include 'partials/ajax_loader.html.twig' with {loader_id: 'loader-users'} %}
-    <table class="table table-bordered table-hover" data-role="datagrid" data-loader="#loader-users" data-toolbar="#toolbar-users" data-sorting='[[8, "desc"]]'>
+    <table class="table table-bordered table-hover" data-widget="datagrid" data-loader="#loader-users" data-toolbar="#toolbar-users" data-sorting='[[8, "desc"]]'>
         <thead>
         <tr>
             <th data-column="details">{{ 'details'|trans }}</th>

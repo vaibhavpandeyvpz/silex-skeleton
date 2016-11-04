@@ -9,7 +9,7 @@
         if (locale) {
             moment.locale(locale);
         }
-        $('select[data-toggle="select2"]').select2({
+        $('select[data-widget="select2"]').select2({
             theme: 'bootstrap',
             width: '100%',
         });

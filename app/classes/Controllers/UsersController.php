@@ -27,7 +27,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class UsersController extends Controller
 {
-
     /**
      * @param Request $request
      * @return Response
@@ -62,7 +61,7 @@ class UsersController extends Controller
         }
         $this->app->addBreadcrumbItem($this->app->transChoice('users', 2), 'users');
         $this->app->addBreadcrumbItem('add');
-        return $this->app->render('users_add_edit.html.twig', [
+        return $this->app->render('add_edit_form.html.twig', [
             'form' => $form->createView(),
             'title' => 'add_user',
         ]);
@@ -135,7 +134,7 @@ class UsersController extends Controller
         }
         $this->app->addBreadcrumbItem($this->app->transChoice('users', 2), 'users');
         $this->app->addBreadcrumbItem('edit');
-        return $this->app->render('users_add_edit.html.twig', [
+        return $this->app->render('add_edit_form.html.twig', [
             'form' => $form->createView(),
             'title' => 'edit_user',
         ]);

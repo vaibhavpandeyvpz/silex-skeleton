@@ -73,12 +73,10 @@ class AddEditUserModel
             new Assert\NotBlank(),
             new Assert\Email(),
         ]);
-        $metadata->addPropertyConstraints('password', [
-            new Assert\Length([
-                'min' => 8,
-                'max' => 32,
-            ]),
-        ]);
+        $metadata->addPropertyConstraint('password', new Assert\Length([
+            'min' => 8,
+            'max' => 32,
+        ]));
         $metadata->addPropertyConstraints('roles', [
             new Assert\Required(),
             new Assert\NotBlank(),

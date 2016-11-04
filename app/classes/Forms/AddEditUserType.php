@@ -52,7 +52,7 @@ class AddEditUserType extends AbstractType
         $builder->add('roles', ChoiceType::class, [
             'attr' => [
                 'class' => 'select2-multiple',
-                'data-toggle' => 'select2',
+                'data-widget' => 'select2',
             ],
             'choices'  => [
                 'administrator' => 'ROLE_ADMIN',

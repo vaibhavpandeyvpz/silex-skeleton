@@ -158,5 +158,5 @@
         });
     };
 
-    $(document).on('ready', () => $('[data-role="datagrid"]').datagrid());
+    $(document).on('ready', () => $('table[data-widget="datagrid"]').datagrid());
 })(jQuery);
