@@ -37,7 +37,7 @@ return [
     'id' => 'ID',
     'locked' => 'Locked',
     'login' => 'Login',
-    'login_help' => 'Forgot your password? Reset it <a href="%link%">here</a>.',
+    'login_help' => 'Need an account? Register <a href="%link%">here</a>.',
     'login_social_help' => 'Or you can login quickly using any of the below social services:',
     'logout' => 'Logout',
     'menu' => 'Menu',
