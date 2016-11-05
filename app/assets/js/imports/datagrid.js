@@ -15,16 +15,19 @@
                 case 'roles':
                     return data.split(',')
                         .map((i) => {
-                            let clazz = i === 'ROLE_ADMIN' ? 'danger' : 'info';
-                            return sprintf('<span class="label label-%s">%s</span>', clazz, translations[i])
+                            switch (i) {
+                                case 'ROLE_ADMIN':
+                                    return sprintf('<span class="label label-%s">%s</span>', 'danger', translations[i]);
+                                default:
+                                    return sprintf('<span class="label label-%s">%s</span>', 'info', translations[i]);
+                            }
                         })
                         .join('\n');
-                case 'time_diff': {
+                case 'time_diff':
                     if (data != null) {
                         return sprintf('<abbr data-toggle="tooltip" title="%s">%s</abbr>', data, moment(data).fromNow());
                     }
                     return '<span class="text-muted">' + translations.never + '</span>';
-                }
                 default:
                     return data;
             }
