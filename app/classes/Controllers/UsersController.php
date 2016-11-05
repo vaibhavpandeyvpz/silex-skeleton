@@ -148,10 +148,23 @@ class UsersController extends Controller
     {
         return $this->app->json(
             (new DataTables\Builder())
+                ->withColumnAliases([
+                    'id' => 'u.id',
+                    'name' => 'u.name',
+                    'email' => 'u.email',
+                    'roles' => 'u.roles',
+                    'isConfirmed' => 'u.isConfirmed',
+                    'isEnabled' => 'u.isEnabled',
+                    'isLocked' => 'u.isLocked',
+                    'createdAt' => 'u.createdAt',
+                    'updatedAt' => 'u.updatedAt',
+                ])
+                ->withIndexColumn('u.id')
                 ->withQueryBuilder(
-                    $this->app->createQueryBuilder()
-                        ->select('*', 'NULL AS blank')
-                        ->from('users'))
+                    $this->app->getEntityManager()
+                        ->createQueryBuilder()
+                        ->select('u')
+                        ->from(User::class, 'u'))
                 ->withRequestParams($request->query->all())
                 ->getResponse()
         );

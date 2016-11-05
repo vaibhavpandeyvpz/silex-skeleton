@@ -34,7 +34,7 @@
     "symfony/twig-bridge": "^3.1",
     "symfony/validator": "^3.1",
     "ua-parser/uap-php": "^3.4",
-    "vaibhavpandeyvpz/doctrine-datatables": "^1.2",
+    "vaibhavpandeyvpz/doctrine-datatables": "^1.3",
     "vaibhavpandeyvpz/pimple-breadcrumbs": "^1.0",
     "vaibhavpandeyvpz/pimple-config": "^1.0",
     "vlucas/phpdotenv": "^2.4"
