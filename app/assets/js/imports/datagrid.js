@@ -5,7 +5,7 @@
         renderCell (renderer, data, row) {
             switch (renderer) {
                 case 'email':
-                    return sprintf('<a href class="mailto:%1$s">%1$s</a>', data);
+                    return sprintf('<a href="mailto:%1$s">%1$s</a>', data);
                 case 'boolean':
                     return sprintf(
                         '<span class="label label-%s">%s</span>',

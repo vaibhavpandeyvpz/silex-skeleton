@@ -14,6 +14,8 @@ return [
     'email_confirmed' => 'Thanks for confirming your email address. Please login.',
     'forgot_password_confirmation' => 'An email has been sent to <a class="alert-link" href="mailto:%email%">%email%</a> with further instructions on how to reset your password. Please check your inbox or spam/junk folder to proceed.',
     'logout_success' => 'You are now logged out.',
+    'oauth_no_email' => 'We were not able to retrieve your email address.',
+    'oauth_no_user_found' => 'We coud not find a user with that email address.',
     'password_updated' => 'Your account password has been updated. Please login.',
     'profile_updated' => 'Your profile details have been updated.',
     'user_added' => 'New user with email %email% has been added.',

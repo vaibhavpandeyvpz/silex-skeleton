@@ -9,6 +9,18 @@
             {{ form_start(form) }}
                 {{ form_row(form._token) }}
             {{ form_end(form) }}
+            <hr>
+            <p>{{ 'login_social_help'|trans }}</p>
+            <div class="btn-toolbar">
+                <div class="btn-group btn-group-sm">
+                    <a class="btn btn-facebook" href="{{ path('oauth2', {server: 'facebook'}) }}" role="button"><i class="fa fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-facebook" href="{{ path('oauth2', {server: 'facebook'}) }}" role="button">{{ 'facebook'|trans }}</a>
+                </div>
+                <div class="btn-group btn-group-sm">
+                    <a class="btn btn-google" href="{{ path('oauth2', {server: 'google'}) }}" role="button"><i class="fa fa-fw fa-google"></i></a>
+                    <a class="btn btn-google" href="{{ path('oauth2', {server: 'google'}) }}" role="button">{{ 'google'|trans }}</a>
+                </div>
+            </div>
         </div>
         <div class="panel-footer">
             <p class="text-right no-margin-bottom">{{ 'login_help'|trans({'%link%': path('forgot_password')})|raw }}</p>

@@ -20,6 +20,8 @@
   "require": {
     "php": ">=5.5.9",
     "doctrine/orm": "^2.5",
+    "league/oauth2-facebook": "^1.4",
+    "league/oauth2-google": "^1.0",
     "monolog/monolog": "^1.21",
     "nesbot/carbon": "^1.21",
     "rappasoft/laravel-helpers": "@dev",

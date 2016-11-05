@@ -40,6 +40,7 @@ $app->register(new Silex\Provider\AssetServiceProvider())
 $app->register(new Pimple\Breadcrumbs\BreadcrumbsServiceProvider())
     ->register(new App\Provider\ControllersServiceProvider())
     ->register(new App\Provider\DoctrineServiceProvider())
+    ->register(new App\Provider\OAuth2ServiceProvider())
     ->register(new App\Provider\TranslationServiceProvider());
 
 // </editor-fold>
@@ -51,6 +52,7 @@ $app->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/conf
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/database.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/logging.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/mail.php'))
+    ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/oauth2.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/security.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/translations.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/views.php'));
@@ -72,6 +74,12 @@ $app->post('/forgot-password', 'AccountController:forgotPasswordAction');
 
 $app->get('/login', 'AccountController:loginAction')
     ->bind('login');
+
+$app->get('/oauth2/{server}', 'OAuth2Controller:indexAction')
+    ->bind('oauth2');
+
+$app->get('/oauth2/{server}/response', 'OAuth2Controller:responseAction')
+    ->bind('oauth2_response');
 
 $app->get('/register', 'AccountController:registerAction')
     ->bind('register');

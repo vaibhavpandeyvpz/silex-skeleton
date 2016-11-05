@@ -6,6 +6,7 @@ Scaffolding for [silex/silex](http://silex.sensiolabs.org/) to kick-start creati
 Features
 -------
 - User authentication and management
+- Login via [Facebook](https://github.com/thephpleague/oauth2-facebook) & [Google](https://github.com/thephpleague/oauth2-google) (or any [OAuth2](https://github.com/thephpleague/oauth2-client) service)
 - Role-based access control
 - Email address confirmations
 - Password reset via email
