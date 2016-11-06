@@ -10,8 +10,8 @@
  */
 
 return [
+    'oauth2.default_target_path' => '/app/',
     'oauth2.firewall' => 'app',
-    'oauth2.target' => '/app/',
     'oauth2.facebook.options' => [
         'clientId' => getenv('OAUTH2_FACEBOOK_CLIENT_ID'),
         'clientSecret' => getenv('OAUTH2_FACEBOOK_CLIENT_SECRET'),

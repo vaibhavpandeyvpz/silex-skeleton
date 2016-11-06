@@ -63,9 +63,10 @@ class OAuth2Controller extends Controller
             default:
                 throw new NotFoundHttpException();
         }
+        $session = $this->app->getSession();
         if (($request->query->has('code') === false) || empty($state = $request->query->get('state'))) {
             throw new NotFoundHttpException();
-        } elseif ($state !== $this->app->getSession()->get("oauth2.{$server}.state")) {
+        } elseif ($state !== $session->get("oauth2.{$server}.state")) {
             throw new BadRequestHttpException();
         }
         $token = $provider->getAccessToken('authorization_code', [ 'code' => $request->query->get('code') ]);
@@ -77,9 +78,17 @@ class OAuth2Controller extends Controller
             /** @var User $user */
             $token = new UsernamePasswordToken($user, null, $this->app['oauth2.firewall'], $user->getRoles());
             $this->app['security.token_storage']->setToken($token);
-            $this->app->getSession()->set('_security_' . $this->app['oauth2.firewall'], serialize($token));
-            $this->app->getSession()->save();
-            return $this->app->redirect($this->app['oauth2.target']);
+            $session->set('_security_' . $this->app['oauth2.firewall'], serialize($token));
+            // Redirect
+            $key = '_security.' . $this->app['oauth2.firewall'] . '.target_path';
+            if ($session->has($key)) {
+                $path = $session->get($key);
+                $session->remove($key);
+            } else {
+                $path = $this->app['oauth2.default_target_path'];
+            }
+            $session->save();
+            return $this->app->redirect($path);
         } else {
             $this->app->getFlashBag()->add('danger', 'oauth_no_user_found');
         }
