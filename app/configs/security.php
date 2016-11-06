@@ -36,7 +36,7 @@ return [
             'form' => [
                 'check_path' => '/app/login',
                 'login_path' => '/login',
-                'always_use_default_target_path' => true,
+                // 'always_use_default_target_path' => true,
                 'default_target_path' => '/app/'
             ],
             'logout' => [
