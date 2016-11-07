@@ -1,0 +1,9 @@
+<ol class="breadcrumb">
+    {% for item in app.breadcrumbs.items %}
+        {% if item.route is null or loop.last %}
+            <li class="active">{{ item.text|trans }}</li>
+        {% else %}
+            <li><a href="{{ path(item.route, item.params) }}">{{ item.text|trans }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ol>

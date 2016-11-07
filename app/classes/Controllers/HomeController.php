@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        $this->app->addBreadcrumbItem('home');
         return $this->app->render('home.html.twig');
     }
 }

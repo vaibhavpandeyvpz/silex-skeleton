@@ -11,6 +11,7 @@
 {% block body %}
     {% include 'partials/portal_menu.html.twig' %}
     <div class="container">
+        {% include 'partials/breadcrumbs.html.twig' %}
         {% include 'partials/flash_messages.html.twig' %}
         {% block content %}{% endblock %}
     </div>

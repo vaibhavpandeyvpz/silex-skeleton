@@ -34,6 +34,7 @@ return [
     'forgot_password_help' => 'Remember your password? Login <a href="%link%">here</a>.',
     'google' => 'Google',
     'hi' => 'Hi! %name%',
+    'home' => 'Home',
     'id' => 'ID',
     'locked' => 'Locked',
     'login' => 'Login',
