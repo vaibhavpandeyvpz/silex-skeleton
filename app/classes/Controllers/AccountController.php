@@ -28,6 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -125,7 +126,7 @@ class AccountController extends Controller
         $form = $this->app->namedForm(null, null, [], LoginType::class)
             ->setAction($this->app->path('app_login'))
             ->getForm();
-        $form->get('_username')->setData($this->app->getSession()->get('_security.last_username'));
+        $form->get('_username')->setData($this->app->getSession()->get(Security::LAST_USERNAME));
         if ($e = $this->app['security.last_error']($request)) {
             $this->app->getFlashBag()->add('danger', $e);
         }
