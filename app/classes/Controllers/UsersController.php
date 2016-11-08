@@ -51,7 +51,7 @@ class UsersController extends Controller
             $this->app->getEntityManager()->persist($user);
             try {
                 $this->app->getEntityManager()->flush();
-                $this->app->getFlashBag()->add('success', $this->app->trans('user_added', [ '%email%' => $data->email ], 'flash'));
+                $this->app->getFlashBag()->add('success', $this->app->trans('user_added', [ '%name%' => $data->name ], 'flash'));
                 return $this->app->redirect($this->app->url('users'));
             } catch (UniqueConstraintViolationException $e) {
                 $form->get('email')->addError(
@@ -79,7 +79,7 @@ class UsersController extends Controller
         }
         $this->app->getEntityManager()->remove($user);
         $this->app->getEntityManager()->flush();
-        $this->app->getFlashBag()->add('success', $this->app->trans('user_deleted', [ '%id%' => $id ], 'flash'));
+        $this->app->getFlashBag()->add('success', $this->app->trans('user_deleted', [ '%name%' => $user->getName() ], 'flash'));
         return $this->app->redirect($this->app->url('users'));
     }
 
@@ -124,7 +124,7 @@ class UsersController extends Controller
             $this->app->getEntityManager()->persist($user);
             try {
                 $this->app->getEntityManager()->flush();
-                $this->app->getFlashBag()->add('success', $this->app->trans('user_updated', [ '%id%' => $id ], 'flash'));
+                $this->app->getFlashBag()->add('success', $this->app->trans('user_updated', [ '%name%' => $data->name ], 'flash'));
                 return $this->app->redirect($this->app->url('users'));
             } catch (UniqueConstraintViolationException $e) {
                 $form->get('email')->addError(
