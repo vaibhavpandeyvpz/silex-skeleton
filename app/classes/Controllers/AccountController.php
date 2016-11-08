@@ -125,6 +125,7 @@ class AccountController extends Controller
         $form = $this->app->namedForm(null, null, [], LoginType::class)
             ->setAction($this->app->path('app_login'))
             ->getForm();
+        $form->get('_username')->setData($this->app->getSession()->get('_security.last_username'));
         if ($e = $this->app['security.last_error']($request)) {
             $this->app->getFlashBag()->add('danger', $e);
         }
