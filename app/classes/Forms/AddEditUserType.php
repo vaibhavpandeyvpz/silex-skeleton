@@ -37,10 +37,12 @@ class AddEditUserType extends AbstractType
     {
         /** @var TranslatorInterface $translator */
         $translator = $options['translator'];
-        $builder->add('name', TextType::class, [ 'attr' => [ 'autofocus' => 'autofocus' ] ]);
-        $builder->add('email', EmailType::class);
+        $builder->add('name', TextType::class, [
+            'attr' => [ 'autofocus' => 'autofocus' ],
+            'label' => 'name',
+        ]);
+        $builder->add('email', EmailType::class, [ 'label' => 'email' ]);
         $builder->add('password', RepeatedType::class, [
-            'type' => PasswordType::class,
             'invalid_message' => 'passwords_mismatch',
             'first_options'  => [
                 'attr' => [ 'autofocus' => 'autofocus' ],
@@ -48,6 +50,7 @@ class AddEditUserType extends AbstractType
             ],
             'required' => $options['require_password'],
             'second_options' => [ 'label' => 'confirm_password' ],
+            'type' => PasswordType::class,
         ]);
         $builder->add('roles', ChoiceType::class, [
             'attr' => [
@@ -58,11 +61,8 @@ class AddEditUserType extends AbstractType
                 'administrator' => 'ROLE_ADMIN',
                 $translator->transChoice('users', 1) => 'ROLE_USER',
             ],
+            'label' => 'roles',
             'multiple' => true,
-        ]);
-        $builder->add('is_confirmed', CheckboxType::class, [
-            'label' => 'confirmed',
-            'required' => false,
         ]);
         $builder->add('is_enabled', CheckboxType::class, [
             'label' => 'enabled',

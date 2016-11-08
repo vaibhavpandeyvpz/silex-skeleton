@@ -55,12 +55,6 @@ class User extends Model implements AdvancedUserInterface
     protected $roles;
 
     /**
-     * @ORM\Column(name="is_confirmed", type="boolean")
-     * @var bool
-     */
-    protected $isConfirmed;
-
-    /**
      * @ORM\Column(name="is_enabled", type="boolean")
      * @var bool
      */
@@ -106,8 +100,7 @@ class User extends Model implements AdvancedUserInterface
         $user = new static();
         $user->setRoles('ROLE_USER');
         $user->setSalt(str_random(16));
-        $user->setConfirmed(false);
-        $user->setEnabled(true);
+        $user->setEnabled(false);
         $user->setLocked(false);
         $user->setCreatedAt(new DateTime());
         return $user;
@@ -199,22 +192,6 @@ class User extends Model implements AdvancedUserInterface
     public function getUsername()
     {
         return $this->email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isConfirmed()
-    {
-        return $this->isConfirmed;
-    }
-
-    /**
-     * @param bool $isConfirmed
-     */
-    public function setConfirmed($isConfirmed)
-    {
-        $this->isConfirmed = $isConfirmed;
     }
 
     /**

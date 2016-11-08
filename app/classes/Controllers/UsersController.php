@@ -44,7 +44,6 @@ class UsersController extends Controller
             $user->setName($data->name);
             $user->setEmail($data->email);
             $user->setPassword($this->app->encodePassword($user, $data->password));
-            $user->setConfirmed($data->is_confirmed);
             $user->setEnabled($data->is_enabled);
             $user->setLocked($data->is_locked);
             $user->setRoles($data->roles);
@@ -99,7 +98,6 @@ class UsersController extends Controller
         $data->name = $user->getName();
         $data->email = $user->getEmail();
         $data->roles = $user->getRoles();
-        $data->is_confirmed = $user->isConfirmed();
         $data->is_enabled = $user->isEnabled();
         $data->is_locked = $user->isLocked();
         $options = [
@@ -117,7 +115,6 @@ class UsersController extends Controller
             if ($data->password) {
                 $user->setPassword($this->app->encodePassword($user, $data->password));
             }
-            $user->setConfirmed($data->is_confirmed);
             $user->setEnabled($data->is_enabled);
             $user->setLocked($data->is_locked);
             $user->setRoles($data->roles);
@@ -153,7 +150,6 @@ class UsersController extends Controller
                     'name' => 'u.name',
                     'email' => 'u.email',
                     'roles' => 'u.roles',
-                    'isConfirmed' => 'u.isConfirmed',
                     'isEnabled' => 'u.isEnabled',
                     'isLocked' => 'u.isLocked',
                     'createdAt' => 'u.createdAt',

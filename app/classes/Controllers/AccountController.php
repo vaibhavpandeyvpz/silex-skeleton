@@ -28,6 +28,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccountExpiredException;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+use Symfony\Component\Security\Core\Exception\DisabledException;
+use Symfony\Component\Security\Core\Exception\LockedException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -61,10 +65,10 @@ class AccountController extends Controller
         }
         $user = $emailConfirmationToken->getUser();
         if ($emailConfirmationToken->getEmailHash() !== md5($user->getEmail())) {
-            throw new BadRequestHttpException();
+            throw new NotFoundHttpException();
         }
         $emailConfirmationToken->setConsumed(true);
-        $user->setConfirmed(true);
+        $user->setEnabled(true);
         $this->app->getEntityManager()->persist($emailConfirmationToken);
         $this->app->getEntityManager()->flush();
         $this->app->getFlashBag()->add('success', 'email_confirmed');
@@ -126,9 +130,19 @@ class AccountController extends Controller
         $form = $this->app->namedForm(null, null, [], LoginType::class)
             ->setAction($this->app->path('app_login'))
             ->getForm();
-        $form->get('_username')->setData($this->app->getSession()->get(Security::LAST_USERNAME));
-        if ($e = $this->app['security.last_error']($request)) {
-            $this->app->getFlashBag()->add('danger', $e);
+        $session = $this->app->getSession();
+        $form->get('_username')->setData($session->get(Security::LAST_USERNAME));
+        if ($e = $session->get(Security::AUTHENTICATION_ERROR)) {
+            if ($e instanceof BadCredentialsException) {
+                $message = 'security_bad_credentials';
+            } elseif ($e instanceof DisabledException) {
+                $message = 'security_account_disabled';
+            } elseif ($e instanceof LockedException) {
+                $message = 'security_account_locked';
+            } else {
+                $message = 'security_unknown_error';
+            }
+            $this->app->getFlashBag()->add('danger', $message);
         }
         return $this->app->render('login.html.twig', [
             'form' => $form->createView(),

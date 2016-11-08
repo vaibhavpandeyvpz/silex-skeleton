@@ -43,11 +43,6 @@ class AddEditUserModel
     /**
      * @var bool
      */
-    public $is_confirmed;
-
-    /**
-     * @var bool
-     */
     public $is_enabled;
 
     /**

@@ -31,13 +31,13 @@ class ResetPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('new_password', RepeatedType::class, [
-            'type' => PasswordType::class,
             'invalid_message' => 'passwords_mismatch',
             'first_options'  => [
                 'attr' => [ 'autofocus' => 'autofocus' ],
                 'label' => 'new_password',
             ],
             'second_options' => [ 'label' => 'confirm_password' ],
+            'type' => PasswordType::class,
         ]);
         $builder->add('submit', SubmitType::class, [
             'attr' => [ 'class' => 'btn btn-success' ],

@@ -91,8 +91,7 @@ $app->get('/reset-password/{token}', 'AccountController:resetPasswordAction')
 
 $app->post('/reset-password/{token}', 'AccountController:resetPasswordAction');
 
-$app->mount('/app', new App\Provider\AppControllerProvider())
-    ->before(new App\Middleware\ConfirmEmailMiddleware());
+$app->mount('/app', new App\Provider\AppControllerProvider());
 
 $app->before(function () use ($app) {
     $app->addBreadcrumbItem('app', 'home');

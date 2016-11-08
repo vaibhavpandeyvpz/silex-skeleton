@@ -20,7 +20,6 @@ return [
     'close' => 'Close',
     'confirm_password' => 'Confirm Password',
     'confirm_user_delete' => 'Are you sure to delete selected user?',
-    'confirmed' => 'Confirmed',
     'created_at' => 'Created At',
     'dashboard' => 'Dashboard',
     'delete' => 'Delete',
