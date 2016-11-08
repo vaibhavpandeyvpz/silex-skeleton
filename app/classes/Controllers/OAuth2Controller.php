@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Class OAuth2Controller
@@ -75,20 +76,25 @@ class OAuth2Controller extends Controller
         if (empty($email = $user->getEmail())) {
             $this->app->getFlashBag()->add('danger', 'oauth_no_email');
         } elseif ($user = $this->app->getRepository(User::class)->findOneBy([ 'email' => $email ])) {
-            /** @var User $user */
-            $token = new UsernamePasswordToken($user, null, $this->app['oauth2.firewall'], $user->getRoles());
-            $this->app['security.token_storage']->setToken($token);
-            $session->set('_security_' . $this->app['oauth2.firewall'], serialize($token));
-            // Redirect
-            $key = '_security.' . $this->app['oauth2.firewall'] . '.target_path';
-            if ($session->has($key)) {
-                $path = $session->get($key);
-                $session->remove($key);
+            /** @var AdvancedUserInterface $user */
+            if (!$user->isEnabled()) {
+                $this->app->getFlashBag()->add('danger', 'security_account_disabled');
+            } elseif (!$user->isAccountNonLocked()) {
+                $this->app->getFlashBag()->add('danger', 'security_account_locked');
             } else {
-                $path = $this->app['oauth2.default_target_path'];
+                $token = new UsernamePasswordToken($user, null, $this->app['oauth2.firewall'], $user->getRoles());
+                $this->app['security.token_storage']->setToken($token);
+                $session->set('_security_' . $this->app['oauth2.firewall'], serialize($token));
+                $key = '_security.' . $this->app['oauth2.firewall'] . '.target_path';
+                if ($session->has($key)) {
+                    $path = $session->get($key);
+                    $session->remove($key);
+                } else {
+                    $path = $this->app['oauth2.default_target_path'];
+                }
+                $session->save();
+                return $this->app->redirect($path);
             }
-            $session->save();
-            return $this->app->redirect($path);
         } else {
             $this->app->getFlashBag()->add('danger', 'oauth_no_user_found');
         }
