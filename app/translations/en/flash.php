@@ -18,7 +18,7 @@ return [
     'password_updated' => 'Your account password has been updated. Please login.',
     'profile_updated' => 'Your profile details have been updated.',
     'security_account_disabled' => 'Your account is not enabled. We require you to confirm your email address before we could enable your account.',
-    'security_account_locked' => 'Your account is locked. Please contact administrator',
+    'security_account_locked' => 'Your account is locked. Please contact administrator.',
     'security_bad_credentials' => 'Please check the credentials you have entered below.',
     'security_unknown_error' => 'Unknown error occurred while logging you in.',
     'user_added' => "New user with name '%name%' has been added.",
