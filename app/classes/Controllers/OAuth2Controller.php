@@ -65,7 +65,7 @@ class OAuth2Controller extends Controller
                 throw new NotFoundHttpException();
         }
         $session = $this->app->getSession();
-        if (($request->query->has('code') === false) || empty($state = $request->query->get('state'))) {
+        if (!$request->query->has('code') || empty($state = $request->query->get('state'))) {
             throw new NotFoundHttpException();
         } elseif ($state !== $session->get("oauth2.{$server}.state")) {
             throw new BadRequestHttpException();
