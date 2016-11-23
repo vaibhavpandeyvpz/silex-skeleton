@@ -11,8 +11,6 @@
 
 namespace App\Silex;
 
-use Swift_Message;
-
 /**
  * Class SwiftmailerTrait
  * @package App\Silex
@@ -20,12 +18,12 @@ use Swift_Message;
 trait SwiftmailerTrait
 {
     /**
-     * @return Swift_Message
+     * @return \Swift_Message
      */
     public function createMessage()
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return Swift_Message::newInstance()
+        return \Swift_Message::newInstance()
             ->setFrom([ getenv('EMAIL_FROM_EMAIL') => getenv('EMAIL_FROM_NAME') ]);
     }
 }

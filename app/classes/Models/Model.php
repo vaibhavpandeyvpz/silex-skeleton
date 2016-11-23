@@ -11,7 +11,6 @@
 
 namespace App\Models;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,13 +29,13 @@ abstract class Model
 
     /**
      * @ORM\Column(name="created_at", type="datetime")
-     * @var DateTime
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
      * @ORM\Column(name="updated_at", type="datetime")
-     * @var DateTime
+     * @var \DateTime
      */
     protected $updatedAt;
 
@@ -49,7 +48,7 @@ abstract class Model
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -57,7 +56,7 @@ abstract class Model
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -65,17 +64,17 @@ abstract class Model
     }
 
     /**
-     * @param DateTime $timestamp
+     * @param \DateTime $timestamp
      */
-    public function setCreatedAt(DateTime $timestamp)
+    public function setCreatedAt(\DateTime $timestamp)
     {
         $this->createdAt = $timestamp;
     }
 
     /**
-     * @param DateTime $timestamp
+     * @param \DateTime $timestamp
      */
-    public function setUpdatedAt(DateTime $timestamp)
+    public function setUpdatedAt(\DateTime $timestamp)
     {
         $this->updatedAt = $timestamp;
     }

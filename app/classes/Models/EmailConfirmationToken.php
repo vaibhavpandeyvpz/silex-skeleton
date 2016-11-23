@@ -11,7 +11,6 @@
 
 namespace App\Models;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,7 +60,7 @@ class EmailConfirmationToken extends Model
         $emailConfirmationToken = new static();
         $emailConfirmationToken->setToken(str_random(32));
         $emailConfirmationToken->setConsumed(false);
-        $emailConfirmationToken->setCreatedAt(new DateTime());
+        $emailConfirmationToken->setCreatedAt(new \DateTime());
         return $emailConfirmationToken;
     }
 

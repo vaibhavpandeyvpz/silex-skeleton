@@ -21,7 +21,6 @@ use App\Forms\ResetPasswordModel;
 use App\Forms\ResetPasswordType;
 use App\Models\PasswordResetToken;
 use App\Models\User;
-use DateTime;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;

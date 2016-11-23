@@ -12,7 +12,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,7 +42,7 @@ class PasswordResetToken extends Model
 
     /**
      * @ORM\Column(name="expires_at", type="datetime")
-     * @var DateTime
+     * @var \DateTime
      */
     protected $expiresAt;
 
@@ -62,7 +61,7 @@ class PasswordResetToken extends Model
         $passwordResetToken = new static();
         $passwordResetToken->setToken(str_random(32));
         $passwordResetToken->setConsumed(false);
-        $passwordResetToken->setCreatedAt(new DateTime());
+        $passwordResetToken->setCreatedAt(new \DateTime());
         $passwordResetToken->setExpiresAt(Carbon::now()->addDay());
         return $passwordResetToken;
     }
@@ -116,7 +115,7 @@ class PasswordResetToken extends Model
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getExpiresAt()
     {
@@ -124,9 +123,9 @@ class PasswordResetToken extends Model
     }
 
     /**
-     * @param DateTime $timestamp
+     * @param \DateTime $timestamp
      */
-    public function setExpiresAt(DateTime $timestamp)
+    public function setExpiresAt(\DateTime $timestamp)
     {
         $this->expiresAt = $timestamp;
     }
@@ -136,7 +135,7 @@ class PasswordResetToken extends Model
      */
     public function isExpired()
     {
-        return $this->getExpiresAt() < new DateTime();
+        return $this->getExpiresAt() < new \DateTime();
     }
 
     /**

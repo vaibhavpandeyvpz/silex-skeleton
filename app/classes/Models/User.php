@@ -11,7 +11,6 @@
 
 namespace App\Models;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -102,7 +101,7 @@ class User extends Model implements AdvancedUserInterface
         $user->setSalt(str_random(16));
         $user->setEnabled(false);
         $user->setLocked(false);
-        $user->setCreatedAt(new DateTime());
+        $user->setCreatedAt(new \DateTime());
         return $user;
     }
 
