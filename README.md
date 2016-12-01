@@ -46,11 +46,6 @@ Default **admin** username is ```admin@silex-skeleton.app``` and password is ```
 
 Deployment
 -------
-Set ```APP_ENV``` to ```production``` in ```.env``` file as follows to enable various caching systems:
-```
-APP_ENV=production
-```
-
 Minify static assets before deployment to server:
 ```
 gulp build --production
