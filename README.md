@@ -32,15 +32,14 @@ composer create-project vaibhavpandeyvpz/silex-skeleton:@dev yourapp
 cd yourapp && nano .env
 
 # Prepare database & create admin user
-mysql -u 'db_username' -p 'db_name' < app/migrations/00000000000000_create_security_tables.sql
-mysql -u 'db_username' -p 'db_name' < app/migrations/11111111111111_insert_admin_user.sql
+composer run-script migrate
 ```
 
 Development
 -------
 For development, you can start a development server using [PHP](http://www.php.net/)'s built-in [server](http://php.net/manual/en/features.commandline.webserver.php) as follows:
 ```bash
-php -S localhost:8080 -t public_html public_html/index_dev.php
+composer run-script server
 ```
 
 Default **admin** username is ```admin@silex-skeleton.app``` and password is ```12345678```.

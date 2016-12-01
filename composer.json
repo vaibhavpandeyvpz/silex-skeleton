@@ -22,8 +22,8 @@
     "doctrine/orm": "^2.5",
     "league/oauth2-facebook": "^1.4",
     "league/oauth2-google": "^1.0",
-    "monolog/monolog": "^1.21",
-    "nesbot/carbon": "^1.21",
+    "monolog/monolog": "^1.0",
+    "nesbot/carbon": "^1.0",
     "rappasoft/laravel-helpers": "@dev",
     "silex/silex": "^2.0",
     "swiftmailer/swiftmailer": "^5.4",
@@ -42,10 +42,15 @@
     "vlucas/phpdotenv": "^2.4"
   },
   "scripts": {
+    "migrate": [
+      "chmod 0755 migrate.sh",
+      "sh migrate.sh"
+    ],
     "post-create-project-cmd": [
       "bower i && npm i && gulp build",
       "php -r \"copy('.env.example', '.env');\""
-    ]
+    ],
+    "server": "php -S localhost:8080 -t public_html public_html/index_dev.php"
   },
   "support": {
     "issues": "https://github.com/vaibhavpandeyvpz/silex-skeleton/issues"
