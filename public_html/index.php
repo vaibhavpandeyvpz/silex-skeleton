@@ -13,8 +13,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // <editor-fold desc="Environment Variables">
 
-(new Dotenv\Dotenv(__DIR__ . '/../'))
-    ->load();
+(new Dotenv\Dotenv(__DIR__ . '/../'))->load();
 
 // </editor-fold>
 
