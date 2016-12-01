@@ -7,8 +7,9 @@ public_html/js
 vendor
 
 app/storage/logs/*
-app/storage/orm/cache/*
-app/storage/orm/proxies/*
+app/storage/doctrine/cache/*
+app/storage/doctrine/proxies/*
+app/storage/profiler/*
 app/storage/translations/*
 app/storage/views/*
 composer.lock

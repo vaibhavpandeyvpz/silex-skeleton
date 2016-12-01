@@ -48,13 +48,23 @@ $app->register(new Pimple\Breadcrumbs\BreadcrumbsServiceProvider())
 
 $app->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/app.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/assets.php'))
-    ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/database.php'))
+    ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/doctrine.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/logging.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/mail.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/oauth2.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/security.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/translations.php'))
     ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/views.php'));
+
+// </editor-fold>
+
+// <editor-fold desc="Profiler">
+
+if (getenv('APP_ENV') == 'debug') {
+    $app->register(new Silex\Provider\HttpFragmentServiceProvider())
+        ->register(new Silex\Provider\WebProfilerServiceProvider())
+        ->register(new Pimple\Provider\ConfigServiceProvider(__DIR__ . '/../app/configs/profiler.php'));
+}
 
 // </editor-fold>
 

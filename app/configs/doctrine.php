@@ -20,8 +20,8 @@ return [
         'charset' => 'utf8',
     ],
     'db.fetch_mode' => PDO::FETCH_OBJ,
-    'em.cache_path' => __DIR__ . '/../storage/orm/cache',
+    'em.cache_path' => __DIR__ . '/../storage/doctrine/cache',
     'em.models_path' => __DIR__ . '/../../classpath/Models',
-    'em.proxy_dir' => __DIR__ . '/../storage/orm/proxies',
+    'em.proxy_dir' => __DIR__ . '/../storage/doctrine/proxies',
     'em.proxy_namespace' => 'App\\Models\\Proxies',
 ];
