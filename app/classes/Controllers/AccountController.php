@@ -27,7 +27,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccountExpiredException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\DisabledException;
 use Symfony\Component\Security\Core\Exception\LockedException;
@@ -121,10 +120,9 @@ class AccountController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return Response
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         $form = $this->app->namedForm(null, null, [], LoginType::class)
             ->setAction($this->app->path('app_login'))
